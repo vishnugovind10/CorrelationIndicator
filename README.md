@@ -20,5 +20,4 @@ This code compares BTC against the below:
     5. WTICrude ( Commodity Markets)
     6. Gold ( Risk Sentiments)
     
-   
-![](AltcoinCorrelation.png)
+   ![](CrytpoCorrelation.png)
