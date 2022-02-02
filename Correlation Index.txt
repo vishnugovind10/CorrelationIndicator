@@ -1,0 +1,50 @@
+
+
+//@version=4
+study("Crypto Market Correlation", overlay = false)
+
+///Get Data///
+copper= security("OANDA:XCUUSD", "15", close)
+spx = security("OANDA:SPX500USD", "15", close)
+dax30 = security("OANDA:DE30EUR", "15", close)
+eurjpy = security("OANDA:EURJPY", "15", close)
+WTIcrude = security("TVC:USOIL", "15", close)
+gold = security("OANDA:XAUUSD", "15", close)
+
+///Correlation///
+Correlation_Length = input(100)
+coppercor = correlation(close, copper, Correlation_Length)
+spxcor = correlation(close, spx, Correlation_Length)
+dax30cor = correlation(close, dax30, Correlation_Length)
+eurjpycor = correlation(close, eurjpy, Correlation_Length)
+WTIcrudecor = correlation(close, WTIcrude, Correlation_Length)
+goldcor = correlation(close, gold, Correlation_Length)
+
+///Plot///
+plot(coppercor, title = 'Copper', color = color.white, style = plot.style_line, linewidth = 2)
+plot(spxcor, title = 'S&P500', color = color.fuchsia, style = plot.style_line, linewidth = 2)
+plot(dax30cor, title = 'Dax30', color = color.green, style = plot.style_line, linewidth = 2)
+plot(eurjpycor, title = 'EUR/JPY', color = color.yellow, style = plot.style_line, linewidth = 2)
+plot(WTIcrudecor, title = 'WTI Crude', color = color.aqua, style = plot.style_line, linewidth = 2)
+plot(goldcor, title = 'Gold', color = color.red, style = plot.style_line, linewidth = 2)
+
+///Labels///
+copperlabel = label.new(bar_index, coppercor, '          copper', textcolor=color.white, style= label.style_none, yloc=yloc.price)
+label.delete(copperlabel[1])
+spxlabel = label.new(bar_index, spxcor, '          spx', textcolor=color.fuchsia, style= label.style_none,yloc=yloc.price)
+label.delete(spxlabel[1])
+dax30label = label.new(bar_index, dax30cor, '          dax30', textcolor=color.green, style= label.style_none, yloc=yloc.price)
+label.delete(dax30label[1])
+eurjpylabel = label.new(bar_index, eurjpycor, '          eurjpy', textcolor=color.yellow, style= label.style_none,yloc=yloc.price)
+label.delete(eurjpylabel[1])
+WTIcrudelabel = label.new(bar_index, WTIcrudecor, '          WTIcrude', textcolor=color.aqua, style= label.style_none,yloc=yloc.price)
+label.delete(WTIcrudelabel[1])
+goldlabel = label.new(bar_index, goldcor, '          gold', textcolor=color.red, style= label.style_none,yloc=yloc.price)
+label.delete(goldlabel[1])
+
+//label.set_size(copperlabel, size=size.large)
+//label.set_size(spxlabel, size=size.large)
+//label.set_size(dax30label, size=size.large)
+//label.set_size(eurjpylabel, size=size.large)
+//label.set_size(WTIcrudelabel, size=size.large)
+//label.set_size(goldlabel, size=size.large)

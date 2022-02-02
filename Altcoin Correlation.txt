@@ -1,0 +1,50 @@
+
+
+//@version=4
+study("Altcoin Correlation", overlay = false)
+
+///Get Data///
+Altcoins = security("FTX:ALTPERP", "15", close)
+Ethereum = security("BITMEX:ETHUSD", "15", close)
+Ripple = security("BITMEX:XRPUSD", "15", close)
+Litecoin = security("BITSTAMP:LTCUSD", "15", close)
+Cardano = security("BITTREX:ADAUSD", "15", close)
+Tezos = security("BITTREX:XTZUSD", "15", close)
+
+///Correlation///
+Correlation_Length = input(100)
+Altcoinscor = correlation(close, Altcoins, Correlation_Length)
+Ethereumcor = correlation(close, Ethereum, Correlation_Length)
+Ripplecor = correlation(close, Ripple, Correlation_Length)
+Litecoincor = correlation(close, Litecoin, Correlation_Length)
+Cardanocor = correlation(close, Cardano, Correlation_Length)
+Tezoscor = correlation(close, Tezos, Correlation_Length)
+
+///Plot///
+plot(Altcoinscor, title = 'Altcoins', color = color.white, style = plot.style_line, linewidth = 2)
+plot(Ethereumcor, title = 'Ethereum', color = color.fuchsia, style = plot.style_line, linewidth = 2)
+plot(Ripplecor, title = 'Ripple', color = color.green, style = plot.style_line, linewidth = 2)
+plot(Litecoincor, title = 'Litecoin', color = color.yellow, style = plot.style_line, linewidth = 2)
+plot(Cardanocor, title = 'Cardano', color = color.aqua, style = plot.style_line, linewidth = 2)
+plot(Tezoscor, title = 'Tezos', color = color.red, style = plot.style_line, linewidth = 2)
+
+///Labels///
+Altcoinslabel = label.new(bar_index, Altcoinscor, '          Altcoins', textcolor=color.white, style= label.style_none, yloc=yloc.price)
+label.delete(Altcoinslabel[1])
+Ethereumlabel = label.new(bar_index, Ethereumcor, '          Ethereum', textcolor=color.fuchsia, style= label.style_none,yloc=yloc.price)
+label.delete(Ethereumlabel[1])
+Ripplelabel = label.new(bar_index, Ripplecor, '          Ripple', textcolor=color.green, style= label.style_none, yloc=yloc.price)
+label.delete(Ripplelabel[1])
+Litecoinlabel = label.new(bar_index, Litecoincor, '          Litecoin', textcolor=color.yellow, style= label.style_none,yloc=yloc.price)
+label.delete(Litecoinlabel[1])
+Cardanolabel = label.new(bar_index, Cardanocor, '          Cardano', textcolor=color.aqua, style= label.style_none,yloc=yloc.price)
+label.delete(Cardanolabel[1])
+Tezoslabel = label.new(bar_index, Tezoscor, '          Tezos', textcolor=color.red, style= label.style_none,yloc=yloc.price)
+label.delete(Tezoslabel[1])
+
+//label.set_size(Altcoinslabel, size=size.large)
+//label.set_size(Ethereumlabel, size=size.large)
+//label.set_size(Ripplelabel, size=size.large)
+//label.set_size(Litecoinlabel, size=size.large)
+//label.set_size(Cardanolabel, size=size.large)
+//label.set_size(Tezoslabel, size=size.large)
