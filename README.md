@@ -21,4 +21,4 @@ This code compares BTC against the below:
     6. Gold ( Risk Sentiments)
     
    
-![](AltcoinCorrelation.PNG)
+![](AltcoinCorrelation.png)
